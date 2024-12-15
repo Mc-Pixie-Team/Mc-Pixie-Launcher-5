@@ -3,18 +3,23 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
+    "nuxtbuild": "nuxt build",
+    "nuxtdev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "nuxi": "nuxi",
+    "dev": "tauri dev",
+    "build": "tauri build"
   },
   "dependencies": {
+    "@nuxt/ui": "2.19.2",
     "nuxt": "^3.14.1592",
     "vue": "latest",
     "vue-router": "latest"
   },
   "devDependencies": {
+    "@tauri-apps/api": "^2.1.1",
     "@tauri-apps/cli": "^2.1.0"
   }
 }

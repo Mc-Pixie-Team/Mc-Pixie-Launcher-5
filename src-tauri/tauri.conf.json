@@ -2,19 +2,19 @@
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "Mc-Pixie-Launcher-5",
   "version": "0.1.0",
-  "identifier": "com.tauri.dev",
+  "identifier": "com.pixie.mclauncher",
   "build": {
     "frontendDist": "../dist",
     "devUrl": "http://localhost:3000",
-    "beforeDevCommand": "pnpm dev",
+    "beforeDevCommand": "pnpm nuxtdev",
     "beforeBuildCommand": "pnpm generate"
   },
   "app": {
     "windows": [
       {
         "title": "Mc-Pixie Launcher",
-        "width": 800,
-        "height": 600,
+        "width": 1200,
+        "height": 700,
         "resizable": true,
         "fullscreen": false
       }
@@ -34,4 +34,5 @@
       "icons/icon.ico"
     ]
   }
+  
 }
