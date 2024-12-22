@@ -1,41 +1,48 @@
-<script setup lang="ts">
+<script lang="ts">
+import { invoke } from '@tauri-apps/api/core';
+export default {
+  setup() {
 
-const links = [ {
-  label: 'Home',
-  icon: 'i-heroicons-home',
-  to: '/'
-}, {
-  label: 'Browse',
-  icon: 'i-heroicons-chart-bar',
-  to: '/browse'
-}, {
-  label: 'Settings',
-  icon: 'i-heroicons-command-line',
-  to: '/settings/settings'
-},
-{
-  
-  label: 'Profile',
-  avatar: {
-    src: 'https://avatars.githubusercontent.com/u/739984?v=4'
+
   },
-  badge: 100,
-  to: '/profile/profile'
+  methods: {
+    downloadFile: function () {
+      invoke('my_custom_command', { target: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Test-Logo.svg/783px-Test-Logo.svg.png' }).then(() =>
+          console.log('Completed!')
+      );
+    }
+  }
 }
-]
 
 </script>
 
 
-<template>
- <div>
- 
-    
+<template >
 
-     <UHorizontalNavigation :links="links" class="border-b border-gray-200 dark:border-gray-800"></UHorizontalNavigation>
-    <a href="/browse" >test</a>
+ <div >
+   <UDropdown :items="[[{ label: 'Edit', shortcuts: ['E'] }]]" />
 
+   <h1 class="dark:text-cyan-500">
+     Hello world!
+   </h1>
+  <UButton @click="downloadFile">
+    Toggle
+  </UButton>
+   <UCard>
+     <template #header>
+       <Placeholder class="h-8" />
+     </template>
 
+     <Placeholder class="h-32" />
+
+     <template #footer>
+       <Placeholder class="h-8" />
+     </template>
+   </UCard>
+   Primary: {{ useAppConfig().ui.primary }}
+   Gray: {{ useAppConfig().ui.gray }}
   </div>
+  <a href="/browse">browse</a>
+
 </template>
 

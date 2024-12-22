@@ -23,6 +23,6 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@nuxt/ui'],
+  modules: ['@nuxt/ui', '@vueuse/nuxt'],
   compatibilityDate: '2024-12-14',
 });

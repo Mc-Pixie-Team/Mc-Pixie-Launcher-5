@@ -1,40 +1,62 @@
-<script setup lang="ts">
-import { invoke } from '@tauri-apps/api/core';
+<script lang="ts">
 
-const links = [ {
-  label: 'Home',
-  icon: 'i-heroicons-home',
-  to: '/'
-}, {
-  label: 'Browse',
-  icon: 'i-heroicons-chart-bar',
-  to: '/browse'
-}, {
-  label: 'Settings',
-  icon: 'i-heroicons-command-line',
-  to: '/settings/settings'
-},
-{
-  
-  label: 'Profile',
-  avatar: {
-    src: 'https://avatars.githubusercontent.com/u/739984?v=4'
-  },
-  badge: 100,
-  to: '/profile/profile'
-}
-]
-function doInvoke() {
-  console.log("test")
- invoke("my_custom_command", {target: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQrGU-rWRbOjdT3tmvwow9kRwR1ovtXboW2A&s"})
+
+import Card from "~/components/card.vue";
+
+export default {
+  components: {Card},
+
+  async setup() {
+    let offset = 0;
+    const refdata = ref<any[]>([]);
+
+    async function makeModrinthReqeust(offset: number): Promise<any[]> {
+      try {
+        const facets = encodeURIComponent('[["project_type:modpack"]]');
+        const url = `https://api.modrinth.com/v2/search?offset=${offset}&index=relevance&limit=50&facets=${facets}`;
+
+        const {data, status, error, refresh, clear} = await useFetch(url);
+        if (error.value) throw error.value;
+        return (data.value as any)["hits"];
+      } catch (e: any) {
+        alert(e.message);
+        return [];
+      }
+    }
+
+
+    refdata.value = await makeModrinthReqeust(offset);
+
+
+    const {list, containerProps, wrapperProps} = useVirtualList(refdata, {
+      itemHeight:150
+    });
+
+    useInfiniteScroll(containerProps.ref, async () => {
+      offset += 50;
+      let data = await makeModrinthReqeust(offset);
+      refdata.value.push(...data);
+
+    }, {distance: 200,})
+
+    return {
+      containerProps,
+      list,
+      wrapperProps
+    }
+  }
 }
 </script>
 
 <template>
-  <div >
-    <UHorizontalNavigation :links="links" class="border-b border-gray-200 dark:border-gray-800"></UHorizontalNavigation>
-    Browse
-
-    <UButton v-on:click='doInvoke' >Button</UButton>
+  <div v-bind="containerProps">
+    <div v-bind="wrapperProps">
+      <Card v-for="{ index, data } in list"
+            :key="index" :title="data['title']" :icon_url="data['icon_url']"  />
+    </div>
   </div>
 </template>
+
+<style scoped>
+
+</style>
