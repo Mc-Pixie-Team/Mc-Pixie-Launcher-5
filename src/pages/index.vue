@@ -39,8 +39,7 @@ export default {
        <Placeholder class="h-8" />
      </template>
    </UCard>
-   Primary: {{ useAppConfig().ui.primary }}
-   Gray: {{ useAppConfig().ui.gray }}
+
   </div>
   <a href="/browse">browse</a>
 

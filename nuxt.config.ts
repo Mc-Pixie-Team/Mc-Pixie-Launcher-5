@@ -1,10 +1,9 @@
 export default defineNuxtConfig({
   // (optional) Enable the Nuxt devtools
-  devtools: { enabled: true },
+  devtools: { enabled: false },
 
   // Enable SSG
   ssr: false,
-
   srcDir: "src",
 
   // Enables the development server to be discoverable by other devices when running on iOS physical devices
@@ -23,6 +22,7 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@nuxt/ui', '@vueuse/nuxt'],
+  modules: ['@vueuse/nuxt', '@nuxt/ui'],
+  css: ['~/css/main.css'],
   compatibilityDate: '2024-12-14',
 });

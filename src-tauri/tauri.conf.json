@@ -9,6 +9,15 @@
     "beforeDevCommand": "pnpm nuxtdev",
     "beforeBuildCommand": "pnpm generate"
   },
+  
+  "plugins": {
+    "deep-link": {
+      "desktop": {
+        "schemes": ["pixie"]
+        
+      }
+    }
+  },
   "app": {
     "windows": [
       {
@@ -16,7 +25,9 @@
         "width": 1200,
         "height": 700,
         "resizable": true,
-        "fullscreen": false
+        "fullscreen": false,
+        "hiddenTitle": true,
+        "decorations": false
       }
     ],
     "security": {
