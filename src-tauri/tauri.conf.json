@@ -10,14 +10,6 @@
     "beforeBuildCommand": "pnpm generate"
   },
   
-  "plugins": {
-    "deep-link": {
-      "desktop": {
-        "schemes": ["pixie"]
-        
-      }
-    }
-  },
   "app": {
     "windows": [
       {

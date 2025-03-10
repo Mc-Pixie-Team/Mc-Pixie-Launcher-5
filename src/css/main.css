@@ -1,23 +1,17 @@
-@import "tailwindcss";
+@import "tailwindcss" theme(static);
 @import "@nuxt/ui";
 
 body, html {
   margin: 0px;
   padding: 0px;
+  overflow-x: hidden;
+  overflow-y: visible;
 }
 
-.page-enter-active,
-.page-leave-active {
- transition: opacity 0.5s;
-}
-.page-enter,
-.page-leave-to {
- opacity: 0;
-}
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 7px;
 
 }
 
@@ -30,9 +24,12 @@ body, html {
   background: var(--ui-bg-accented);
   border-radius: 11px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+@theme {
+  --font-sans: 'Inter', sans-serif;
 }
 
 

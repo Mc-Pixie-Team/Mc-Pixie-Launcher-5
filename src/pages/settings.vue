@@ -23,11 +23,57 @@ type MinecraftVersion = {
 }
 
 export default {
-  data(): { value: any; data: string[]; loading: boolean } {
+  setup() {
+
+  },
+  data(): { value: any; data: string[]; loading: boolean, items: any } {
     return {
       value: '',
       data: [],
       loading: false,
+      items: ref([
+  {
+    label: 'app/',
+    defaultExpanded: true,
+    children: [
+      {
+        label: 'composables/',
+        children: [
+          {
+            label: 'useAuth.ts',
+            icon: 'i-vscode-icons-file-type-typescript'
+          },
+          {
+            label: 'useUser.ts',
+            icon: 'i-vscode-icons-file-type-typescript'
+          }
+        ]
+      },
+      {
+        label: 'components/',
+        defaultExpanded: true,
+        children: [
+          {
+            label: 'Card.vue',
+            icon: 'i-vscode-icons-file-type-vue'
+          },
+          {
+            label: 'Button.vue',
+            icon: 'i-vscode-icons-file-type-vue'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    label: 'app.vue',
+    icon: 'i-vscode-icons-file-type-vue'
+  },
+  {
+    label: 'nuxt.config.ts',
+    icon: 'i-vscode-icons-file-type-nuxt'
+  }
+])
     };
   },
   methods: {
@@ -54,5 +100,8 @@ export default {
   <USelectMenu @update:open="invokeMetadata" :loading="loading" placeholder="Select mc version..." v-model="value"
     :items="data" class="w-48" />
   <UButton @click="invokeGameInstall"  size="md" color="primary" label="Install" variant="subtle" icon="i-lucide-download" />
+  <UTree :items="items">
+
+  </UTree>
 </div>
 </template>

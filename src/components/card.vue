@@ -37,7 +37,12 @@ const confirm = async () => {
           :src="projectJson['logo']['thumbnailUrl']"
           class="h-[111px] w-auto rounded-lg"
       />
-      <div class="w-full"></div>
+      <div class="w-full flex flex-col">
+      <h2 class="text-xl font-normal">The Recomming.</h2>
+      <a >
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+      </a>
+    </div>
       <UButton v-on:click="confirm" class="self-end justify-self-end"  size="md" color="primary" label="Install" variant="subtle" icon="i-lucide-download" />
       
 
